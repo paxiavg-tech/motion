@@ -509,42 +509,69 @@ export const InspectorControls: React.FC<InspectorControlsProps> = ({
 
             {/* Export Format */}
             <div className="space-y-2">
-              <label className="text-neutral-300 font-semibold">Format Output Video</label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="flex items-center justify-between">
+                <label className="text-neutral-300 font-semibold">Format Output Media</label>
+                <span className="text-[10px] text-rose-400 font-medium">⭐ Pinterest Ready</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={() => onChangeExportFormat('mp4')}
-                  className={`p-2 rounded-lg border text-center transition-all cursor-pointer ${
+                  className={`p-2.5 rounded-lg border text-left transition-all cursor-pointer ${
                     exportFormat === 'mp4'
                       ? 'bg-amber-500/15 border-amber-500/50 text-amber-300 font-bold'
                       : 'bg-neutral-950 border-neutral-800 text-neutral-400 hover:text-white'
                   }`}
                 >
-                  <div className="text-xs">MP4 (H.264)</div>
-                  <div className="text-[9px] text-neutral-500 font-mono mt-0.5">Universal Stock</div>
+                  <div className="text-xs font-bold text-white flex items-center justify-between">
+                    <span>MP4 (H.264)</span>
+                    <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1 rounded font-mono">4K UHD</span>
+                  </div>
+                  <div className="text-[10px] text-neutral-400 font-mono mt-0.5">Universal Stock 4K</div>
+                </button>
+
+                <button
+                  onClick={() => onChangeExportFormat('gif')}
+                  className={`p-2.5 rounded-lg border text-left transition-all cursor-pointer ${
+                    exportFormat === 'gif'
+                      ? 'bg-rose-500/20 border-rose-500/60 text-rose-300 font-bold shadow-md shadow-rose-950/30'
+                      : 'bg-neutral-950 border-neutral-800 text-neutral-400 hover:text-white'
+                  }`}
+                >
+                  <div className="text-xs font-bold text-rose-300 flex items-center justify-between">
+                    <span>GIF (Pinterest)</span>
+                    <span className="text-[9px] bg-rose-500/20 text-rose-300 px-1 rounded font-mono">Loop Pin</span>
+                  </div>
+                  <div className="text-[10px] text-neutral-400 font-mono mt-0.5">Animasi Pinterest & Web</div>
                 </button>
 
                 <button
                   onClick={() => onChangeExportFormat('webm')}
-                  className={`p-2 rounded-lg border text-center transition-all cursor-pointer ${
+                  className={`p-2.5 rounded-lg border text-left transition-all cursor-pointer ${
                     exportFormat === 'webm'
                       ? 'bg-amber-500/15 border-amber-500/50 text-amber-300 font-bold'
                       : 'bg-neutral-950 border-neutral-800 text-neutral-400 hover:text-white'
                   }`}
                 >
-                  <div className="text-xs">WebM (VP9)</div>
-                  <div className="text-[9px] text-neutral-500 font-mono mt-0.5">High Speed</div>
+                  <div className="text-xs font-bold text-white flex items-center justify-between">
+                    <span>WebM (VP9)</span>
+                    <span className="text-[9px] bg-neutral-800 text-neutral-300 px-1 rounded font-mono">Fast</span>
+                  </div>
+                  <div className="text-[10px] text-neutral-400 font-mono mt-0.5">High Speed Alpha</div>
                 </button>
 
                 <button
                   onClick={() => onChangeExportFormat('png_sequence')}
-                  className={`p-2 rounded-lg border text-center transition-all cursor-pointer ${
+                  className={`p-2.5 rounded-lg border text-left transition-all cursor-pointer ${
                     exportFormat === 'png_sequence'
                       ? 'bg-amber-500/15 border-amber-500/50 text-amber-300 font-bold'
                       : 'bg-neutral-950 border-neutral-800 text-neutral-400 hover:text-white'
                   }`}
                 >
-                  <div className="text-xs">PNG ZIP</div>
-                  <div className="text-[9px] text-neutral-500 font-mono mt-0.5">Alpha VFX Pro</div>
+                  <div className="text-xs font-bold text-white flex items-center justify-between">
+                    <span>PNG ZIP</span>
+                    <span className="text-[9px] bg-neutral-800 text-neutral-300 px-1 rounded font-mono">VFX</span>
+                  </div>
+                  <div className="text-[10px] text-neutral-400 font-mono mt-0.5">Alpha VFX Pro 4K</div>
                 </button>
               </div>
             </div>

@@ -62,7 +62,7 @@ export const RESOLUTION_PRESETS: Record<ResolutionPreset, ResolutionConfig> = {
 
 export type BackgroundMode = 'black' | 'transparent' | 'chroma_green' | 'chroma_blue' | 'custom_gradient' | 'stock_texture';
 
-export type ExportFormat = 'mp4' | 'webm' | 'png_sequence';
+export type ExportFormat = 'mp4' | 'webm' | 'png_sequence' | 'gif';
 
 export type SimulationFootage = 'none' | 'concert' | 'fireplace';
 

@@ -1,5 +1,6 @@
 import { Muxer as Mp4Muxer, ArrayBufferTarget as Mp4ArrayBufferTarget } from 'mp4-muxer';
 import { Muxer as WebmMuxer, ArrayBufferTarget as WebmArrayBufferTarget } from 'webm-muxer';
+import { GIFEncoder, quantize, applyPalette } from 'gifenc';
 import JSZip from 'jszip';
 import { MotionConfig, RESOLUTION_PRESETS, ExportFormat, RenderProgress } from '../types/motion';
 import { drawMotionGraphicFrame } from './motionEngine';
@@ -120,6 +121,17 @@ export async function exportMotionGraphicVideo({
         height,
         fps,
         totalFrames,
+        startTime,
+        onProgress,
+        shouldAbort,
+        loadedTextures,
+        guard,
+      });
+      guard.notifyComplete(result.fileName);
+      return result;
+    } else if (format === 'gif') {
+      const result = await renderPinterestGif({
+        config,
         startTime,
         onProgress,
         shouldAbort,
@@ -819,3 +831,152 @@ function createScaledPreview(canvas: HTMLCanvasElement): string {
   }
   return '';
 }
+
+// ----------------------------------------------------------------------
+// 4. Pinterest Animated GIF Engine (Crisp, High-Speed, Seamless Loop)
+// ----------------------------------------------------------------------
+export interface GifExportOptions {
+  config: MotionConfig;
+  startTime?: number;
+  onProgress?: (progress: RenderProgress) => void;
+  shouldAbort?: () => boolean;
+  loadedTextures?: Record<string, HTMLImageElement>;
+  guard?: BackgroundRenderGuard;
+}
+
+export async function renderPinterestGif({
+  config,
+  startTime = performance.now(),
+  onProgress,
+  shouldAbort,
+  loadedTextures,
+  guard,
+}: GifExportOptions): Promise<{ blob: Blob; fileName: string }> {
+  // Pinterest optimal standard dimensions:
+  // Vertical 9:16 (540x960), Square 1:1 (600x600), Landscape 16:9 (720x405)
+  const isVertical = config.resolution.startsWith('vertical');
+  const isSquare = config.resolution === 'square_4k';
+
+  let targetWidth = 720;
+  let targetHeight = 405;
+  if (isVertical) {
+    targetWidth = 540;
+    targetHeight = 960;
+  } else if (isSquare) {
+    targetWidth = 600;
+    targetHeight = 600;
+  }
+
+  // 15 FPS: Sweet spot for smooth animation & staying well below Pinterest 20MB limit
+  const gifFps = 15;
+  const duration = config.durationSeconds;
+  const totalFrames = Math.round(duration * gifFps);
+  const frameDelayMs = Math.round(1000 / gifFps);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = targetWidth;
+  canvas.height = targetHeight;
+  const ctx = canvas.getContext('2d', {
+    alpha: true,
+    willReadFrequently: true,
+    colorSpace: 'srgb',
+  });
+
+  if (!ctx) {
+    throw new Error('Gagal menginisialisasi 2D Canvas context untuk GIF Pinterest');
+  }
+
+  const gif = GIFEncoder();
+  const isTransparent = config.backgroundMode === 'transparent';
+
+  for (let frame = 0; frame < totalFrames; frame++) {
+    if (shouldAbort && shouldAbort()) {
+      throw new Error('Render GIF dibatalkan oleh pengguna');
+    }
+
+    const timeSec = frame / gifFps;
+    const progress = frame / totalFrames;
+
+    // Draw directly onto scaled canvas for ultra-crisp rasterization and maximum rendering speed
+    drawMotionGraphicFrame({
+      ctx,
+      config,
+      time: timeSec,
+      progress,
+      width: targetWidth,
+      height: targetHeight,
+      loadedTextures,
+      isExportingOffline: true,
+    });
+
+    const imgData = ctx.getImageData(0, 0, targetWidth, targetHeight);
+    const rgba = imgData.data;
+
+    if (isTransparent) {
+      const palette = quantize(rgba, 256, { format: 'rgba4444', oneBitAlpha: true });
+      const index = applyPalette(rgba, palette, 'rgba4444');
+      const transparentIndex = palette.findIndex((p: number[]) => p.length === 4 && p[3] === 0);
+      gif.writeFrame(index, targetWidth, targetHeight, {
+        palette,
+        delay: frameDelayMs,
+        repeat: 0, // Seamless infinite loop on Pinterest
+        transparent: transparentIndex >= 0,
+        transparentIndex: Math.max(0, transparentIndex),
+      });
+    } else {
+      const palette = quantize(rgba, 256, { format: 'rgb565' });
+      const index = applyPalette(rgba, palette, 'rgb565');
+      gif.writeFrame(index, targetWidth, targetHeight, {
+        palette,
+        delay: frameDelayMs,
+        repeat: 0, // Seamless infinite loop on Pinterest
+      });
+    }
+
+    const now = performance.now();
+    const elapsed = (now - startTime) / 1000;
+    const framesDone = frame + 1;
+    const currentFps = elapsed > 0 ? Math.round((framesDone / elapsed) * 10) / 10 : 0;
+    const remainingSec = currentFps > 0 ? Math.round((totalFrames - framesDone) / currentFps) : 0;
+    const percentage = Math.round((framesDone / totalFrames) * 100);
+
+    let previewUrl: string | undefined = undefined;
+    if (frame % 8 === 0 || frame === totalFrames - 1) {
+      previewUrl = createScaledPreview(canvas);
+    }
+
+    if (guard) {
+      guard.updateProgress(percentage, framesDone, totalFrames, currentFps);
+    }
+
+    if (onProgress) {
+      onProgress({
+        isRendering: true,
+        currentFrame: framesDone,
+        totalFrames,
+        percentage,
+        fps: currentFps,
+        elapsedTime: Math.round(elapsed),
+        estimatedRemaining: remainingSec,
+        previewDataUrl: previewUrl,
+        statusText: `Mengompresi GIF Pinterest (${targetWidth}×${targetHeight}): Frame ${framesDone}/${totalFrames}`,
+      });
+    }
+
+    if (frame % 4 === 0) {
+      await yieldToMacroTask();
+    }
+  }
+
+  gif.finish();
+  const bytes = gif.bytes();
+  const blob = new Blob([bytes.buffer as ArrayBuffer], { type: 'image/gif' });
+
+  const baseName = config.exportFileName?.trim()
+    ? config.exportFileName.trim().replace(/[\\/:*?"<>|]/g, '_').replace(/\.[^/.]+$/, '')
+    : (config.templateId || 'pinterest_pin');
+  const fileName = `${baseName}_pinterest.gif`;
+
+  return { blob, fileName };
+}
+

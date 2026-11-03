@@ -25,6 +25,7 @@ import {
   downloadAdobeStockCsvFile,
   formatMicrostockText,
 } from '../services/metadataGenerator';
+import { renderPinterestGif } from '../services/videoExporter';
 
 interface RenderExportModalProps {
   isOpen: boolean;
@@ -45,6 +46,10 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<'video' | 'metadata'>('video');
   const [copiedField, setCopiedField] = useState<string | null>(null);
+  const [isGeneratingGif, setIsGeneratingGif] = useState<boolean>(false);
+  const [gifProgress, setGifProgress] = useState<number>(0);
+  const [gifUrl, setGifUrl] = useState<string | null>(null);
+  const [gifFileName, setGifFileName] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
@@ -107,6 +112,45 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
     setTimeout(() => {
       handleDownloadMetadata();
     }, 300);
+  };
+
+  const handleDownloadPinterestGif = async () => {
+    if (gifUrl && gifFileName) {
+      const a = document.createElement('a');
+      a.href = gifUrl;
+      a.download = gifFileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      return;
+    }
+
+    setIsGeneratingGif(true);
+    setGifProgress(0);
+
+    try {
+      const result = await renderPinterestGif({
+        config,
+        onProgress: (p) => {
+          setGifProgress(p.percentage);
+        },
+      });
+
+      const url = URL.createObjectURL(result.blob);
+      setGifUrl(url);
+      setGifFileName(result.fileName);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = result.fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (err) {
+      console.error('Failed to generate Pinterest GIF:', err);
+    } finally {
+      setIsGeneratingGif(false);
+    }
   };
 
   const formatSeconds = (sec: number) => {
@@ -296,7 +340,18 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
               {/* TAB 1: Video Player & Specs */}
               {activeTab === 'video' && (
                 <div className="space-y-4">
-                  {exportFormat !== 'png_sequence' ? (
+                  {exportFormat === 'gif' ? (
+                    <div className="relative aspect-video rounded-xl overflow-hidden bg-black border border-neutral-800 shadow-xl flex items-center justify-center">
+                      <img
+                        src={progress.downloadUrl}
+                        alt="Animasi GIF Pinterest"
+                        className="w-full h-full object-contain"
+                      />
+                      <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-rose-500/40 text-[10px] font-mono text-rose-300 font-bold">
+                        GIF Pinterest Loop
+                      </div>
+                    </div>
+                  ) : exportFormat !== 'png_sequence' ? (
                     <div className="relative aspect-video rounded-xl overflow-hidden bg-black border border-neutral-800 shadow-xl">
                       <video
                         src={progress.downloadUrl}
@@ -557,16 +612,69 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
                 </div>
               )}
 
+              {/* Pinterest Animated GIF Card (Tersedia untuk semua format render) */}
+              {exportFormat !== 'gif' && (
+                <div className="p-3 bg-gradient-to-r from-rose-950/30 via-neutral-950 to-neutral-950 rounded-xl border border-rose-500/35 flex items-center justify-between gap-3 shadow-md">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-8 h-8 rounded-lg bg-rose-500/15 border border-rose-500/40 flex items-center justify-center shrink-0">
+                      <Sparkles className="w-4 h-4 text-rose-400" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <h5 className="text-xs font-bold text-white truncate">Untuk Konten Pinterest (.gif)</h5>
+                        <span className="text-[9px] font-bold font-mono bg-rose-500/20 text-rose-300 px-1.5 py-0.2 rounded border border-rose-500/30 shrink-0">
+                          Loop Pin
+                        </span>
+                      </div>
+                      <p className="text-[10px] text-neutral-400 truncate mt-0.5">
+                        Format GIF ringan & jernih (15 FPS, &lt;15MB), siap langsung di-pin ke feed Pinterest.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={handleDownloadPinterestGif}
+                    disabled={isGeneratingGif}
+                    className="py-2 px-3 rounded-lg bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-rose-600/20 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 shrink-0"
+                  >
+                    {isGeneratingGif ? (
+                      <>
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                        <span>Encoding GIF ({gifProgress}%)...</span>
+                      </>
+                    ) : gifUrl ? (
+                      <>
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Unduh Lagi (.gif)</span>
+                      </>
+                    ) : (
+                      <>
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Unduh GIF Pinterest</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
+
               {/* Action Buttons */}
               <div className="space-y-2 pt-1">
                 <div className="flex items-center gap-2">
                   <a
                     href={progress.downloadUrl}
                     download={progress.downloadFileName || `${config.templateId || 'render'}.${exportFormat === 'png_sequence' ? 'zip' : exportFormat}`}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 px-3 bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 text-neutral-950 font-bold text-xs rounded-xl shadow-lg shadow-amber-500/20 hover:from-amber-300 hover:to-yellow-300 active:scale-[0.99] transition-all cursor-pointer truncate"
+                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-3 font-bold text-xs rounded-xl shadow-lg active:scale-[0.99] transition-all cursor-pointer truncate ${
+                      exportFormat === 'gif'
+                        ? 'bg-gradient-to-r from-rose-500 via-rose-400 to-pink-400 text-white shadow-rose-500/20 hover:from-rose-400 hover:to-pink-300'
+                        : 'bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 text-neutral-950 shadow-amber-500/20 hover:from-amber-300 hover:to-yellow-300'
+                    }`}
                   >
                     <Download className="w-4 h-4 stroke-[2.5] shrink-0" />
-                    <span className="truncate">Unduh {progress.downloadFileName || `${config.templateId || 'render'}.${exportFormat === 'png_sequence' ? 'zip' : exportFormat}`}</span>
+                    <span className="truncate">
+                      {exportFormat === 'gif'
+                        ? 'Unduh Animasi GIF Pinterest (.gif)'
+                        : `Unduh ${progress.downloadFileName || `${config.templateId || 'render'}.${exportFormat === 'png_sequence' ? 'zip' : exportFormat}`}`}
+                    </span>
                   </a>
 
                   <button
