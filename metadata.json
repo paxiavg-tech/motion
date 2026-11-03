@@ -1,0 +1,8 @@
+{
+  "name": "Remix AuraMotion 4K - HTML to MP4 Motion Graphics Studio",
+  "description": "Studio render HTML, Canvas, dan Web Animation ke video MP4 4K bebas patah-patah dengan kontrol animasi presisi, preset hitung mundur Tahun Baru 2027 dalam berbagai gaya, dan aset motion graphics komersial siap jual.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
