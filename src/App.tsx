@@ -41,39 +41,39 @@ export default function App() {
     loadRenderedDesigns()
   );
 
-  // Initial Motion Config (Hitung Mundur Tahun Baru 2027)
+  // Initial Motion Config (Metropolis City Skyline Beacons - Tanpa Countdown & Tanpa Laser Tengah)
   const [config, setConfig] = useState<MotionConfig>({
-    templateId: 'gold_2027_royal_gala',
-    exportFileName: 'gold_2027_royal_gala',
+    templateId: 'metropolis_city_skyline_beacon',
+    exportFileName: 'metropolis_city_skyline_beacon',
     resolution: '4k_uhd',
-    fps: 60,
+    fps: 30,
     durationSeconds: 10,
     bitrateMbps: 50,
     backgroundMode: 'black',
-    gradientStart: '#1e1035',
-    gradientEnd: '#07040d',
-    stockTextureUrl: goldenImg,
+    gradientStart: '#040714',
+    gradientEnd: '#0a122c',
+    stockTextureUrl: cyberImg,
 
-    // Particles
-    particleCount: 550,
+    // Particles & Lights
+    particleCount: 300,
     particleSpeed: 1.0,
-    particleSize: 3.5,
-    glowIntensity: 1.6,
-    turbulence: 1.0,
-    colorPalette: 'gold_luxury',
+    particleSize: 3.0,
+    glowIntensity: 1.8,
+    turbulence: 0.8,
+    colorPalette: 'cyber_neon',
 
-    // Countdown & Typography (Pilihan Tampilan Fleksibel)
-    showText: true,
-    textDisplayMode: 'countdown_only', // Default: 'countdown_only' (Angka hitung mundur saja tanpa tahun/teks paksaan)
+    // Murni Background Plate: Tanpa Countdown & Tanpa Laser Tengah
+    showText: false,
+    textDisplayMode: 'clean_no_text',
     countdownStart: 10,
-    countdownStyle: 'roman_dial',
-    showCountdownDial: true,
-    textRenderStyle: 'pure_solid_font', // Murni teks font tanpa stroke agar bebas sambungan garis
-    headlineText: 'COUNTDOWN TO 2027',
-    subtitleText: 'WELCOME THE GOLDEN FUTURE',
-    yearText: '2027',
+    countdownStyle: 'cinematic_bold',
+    showCountdownDial: false,
+    textRenderStyle: 'pure_solid_font',
+    headlineText: '',
+    subtitleText: '',
+    yearText: '',
     fontFamily: 'Cinzel',
-    goldShimmer: true,
+    goldShimmer: false,
     simulationFootage: 'none',
   });
 

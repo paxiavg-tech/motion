@@ -264,7 +264,219 @@ export function generateMicrostockMetadata(
   // 1. SPECIFIC METADATA PER PRESET / THEME (Factual, Descriptive English Sentences)
   // =========================================================================
 
-  if (templateId === 'christmas_midnight_santa_city_flyover') {
+  if (templateId === 'metropolis_city_skyline_beacon') {
+    title = 'Illuminated Metropolis City Skyline with Sweeping Rooftop Searchlights and Water Reflections';
+    description =
+      'Cinematic night cityscape motion background featuring towering modern and art deco skyscrapers with glowing office windows, dynamic sweeping rooftop searchlight beacons panning across the night sky, moving traffic light streaks on the waterfront bridge, and rippling harbor reflections. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Backgrounds/Textures';
+    rawKeywordsList = [
+      'city skyline', 'metropolis', 'searchlights', 'rooftop beacons', 'night city', 'skyscrapers',
+      'architecture', 'illuminated windows', 'water reflections', 'harbor', 'cityscape', 'bridge traffic',
+      'light trails', 'downtown', 'urban landscape', 'cinematic', 'motion background', 'seamless loop',
+      '4k animation', 'night lights', 'beams of light', 'sky tracker', 'modern city', 'financial district',
+      'broadcasting background', 'vj loop', 'stage visuals', 'city lights', 'fog', 'atmospheric',
+      'twilight', 'evening', 'coastal city', 'tower', 'spire', 'panoramic', 'dark blue', 'scenic', 'spectacular'
+    ];
+  } else if (templateId === 'metropolis_eco_smart_city') {
+    title = 'Sustainable Eco Smart City Skyline with Vertical Gardens Wind Turbines and Bioluminescent Spores';
+    description =
+      'Futuristic sustainable metropolis panorama featuring modern eco skyscrapers with vertical gardens, spinning rooftop wind turbines, glowing teal office windows, undulating green auroral bio-energy waves, and drifting bioluminescent spores above harbor water. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Technology';
+    rawKeywordsList = [
+      'eco city', 'smart city', 'sustainable architecture', 'net zero', 'green energy', 'wind turbines',
+      'rooftop garden', 'bioluminescent spores', 'futuristic metropolis', 'city skyline', 'urban landscape',
+      'environmental', 'esg background', 'clean energy', 'electric vehicles', 'water reflection', 'harbor',
+      'panoramic vista', 'copy space', 'motion background', 'seamless loop', '4k animation', 'aurora glow',
+      'crescent moon', 'modern buildings', 'eco tech', 'ecological', 'cyberpunk green', 'renewables', 'climate tech'
+    ];
+  } else if (templateId === 'metropolis_fintech_bull_market') {
+    title = 'Financial District Skyline with Upward Data Streams and Global Network Constellation';
+    description =
+      'Majestic financial capital skyline at night featuring modern illuminated corporate towers, upward ascending ticker data streams representing market growth, interconnected telemetry network plexus in the deep sky, and harbor water reflections. Seamless looping 4K animation.';
+    primaryCategory = 'Business/Finance';
+    secondaryCategory = 'Buildings/Landmarks';
+    rawKeywordsList = [
+      'fintech', 'financial district', 'bull market', 'wall street', 'stock market', 'upward data stream',
+      'city skyline', 'skyscrapers', 'capital growth', 'corporate background', 'trading floor', 'network plexus',
+      'connected nodes', 'big data', 'global finance', 'investment', 'water reflections', 'traffic streaks',
+      'night city', 'economic growth', 'banking', 'wealth', 'emerald green', 'dark blue', 'seamless loop',
+      'motion background', '4k animation', 'broadcasting plate', 'copy space', 'downtown', 'illuminated windows'
+    ];
+  } else if (templateId === 'metropolis_quiet_luxury_noir') {
+    title = 'Minimalist Obsidian City Skyline with Platinum Rim Light and Drifting Volumetric Mist';
+    description =
+      'High-end monochromatic architectural noir cityscape showing razor-sharp skyscraper silhouettes accented by delicate platinum rim lighting, warm champagne penthouse suites, rolling low-altitude mist, and calm mirror water reflections. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Abstract';
+    rawKeywordsList = [
+      'quiet luxury', 'architectural noir', 'obsidian skyline', 'platinum rim light', 'minimalist city',
+      'monochrome', 'black background', 'champagne windows', 'penthouse', 'volumetric mist', 'fog',
+      'mirror reflection', 'dark aesthetic', 'high end', 'prestige', 'luxury real estate', 'sleek design',
+      'skyscrapers', 'night metropolis', 'clean plate', 'copy space', 'motion background', 'seamless loop',
+      '4k animation', 'downtown', 'calm atmosphere', 'cinematic lighting', 'elegant'
+    ];
+  } else if (templateId === 'metropolis_golden_hour_dawn') {
+    title = 'Sunrise Metropolis Skyline Silhouette with Morning Star and Rising Golden Sun Embers';
+    description =
+      'Inspiring dawn cityscape motion background featuring dark skyscraper silhouettes backlit by radiant golden sunrise gradients, shining morning star, ascending solar embers, and shimmering water reflections. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Nature';
+    rawKeywordsList = [
+      'sunrise skyline', 'golden hour', 'dawn metropolis', 'new era', 'morning sun', 'morning star',
+      'venus', 'city silhouette', 'corporate kickoff', 'motivational background', 'rising embers',
+      'sun glitter', 'water reflection', 'amber glow', 'violet sky', 'downtown', 'urban landscape',
+      'optimism', 'hope', 'business vision', 'skyscrapers', 'sunbeam', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'atmospheric clouds', 'inspirational'
+    ];
+  } else if (templateId === 'metropolis_cyberpunk_synthwave') {
+    title = 'Cyberpunk City Skyline with Neon Billboards Digital Rain and Wet Asphalt Reflections';
+    description =
+      'Atmospheric futuristic Neo-Tokyo night cityscape featuring dense high-rise towers, glowing magenta and cyan holographic billboards, falling vertical neon digital rain drizzle, and glistening harbor water reflections. Seamless looping 4K animation.';
+    primaryCategory = 'Abstract';
+    secondaryCategory = 'Buildings/Landmarks';
+    rawKeywordsList = [
+      'cyberpunk', 'synthwave', 'neo tokyo', 'neon rain', 'digital drizzle', 'wet asphalt',
+      'holographic billboards', 'magenta cyan', 'vj loop', 'stage visuals', 'lofi background',
+      'city skyline', 'night metropolis', 'futuristic city', 'skyscrapers', 'water reflections',
+      'traffic trails', 'retro wave', 'scifi urban', 'dark violet', 'streaming backdrop',
+      'motion background', 'seamless loop', '4k animation', 'copy space', 'electronic music visualizer'
+    ];
+  } else if (templateId === 'metropolis_cosmic_orbital_harbor') {
+    title = 'Sci-Fi Orbital City Colony with Space Elevator Planetary Ring Arc and Cosmic Nebula';
+    description =
+      'Expansive science fiction space metropolis landscape showing futuristic spires, vertical space elevator cable with traveling climber pod, sweeping celestial planetary ring arc across starry nebula sky, and iridescent water reflections. Seamless looping 4K animation.';
+    primaryCategory = 'Science';
+    secondaryCategory = 'Buildings/Landmarks';
+    rawKeywordsList = [
+      'space metropolis', 'orbital colony', 'space elevator', 'planetary ring', 'celestial arc',
+      'cosmic nebula', 'stardust', 'scifi city', 'futuristic skyline', 'space harbor', 'alien planet',
+      'deep space', 'megastructure', 'astronomy', 'stars', 'satellite', 'spires', 'water reflections',
+      'cosmic background', 'science fiction', 'motion background', 'seamless loop', '4k animation',
+      'celestial', 'copy space', 'interstellar'
+    ];
+  } else if (templateId === 'metropolis_daylight_sunny_skyline') {
+    title = 'Bright Daylight City Skyline with Modern Glass Skyscrapers and Sparkling Blue Harbor';
+    description =
+      'Sunny daytime metropolitan cityscape motion background showing modern glass towers with sunlight glints, clear azure sky with soft white clouds, moving highway traffic, and sparkling water ripples. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Transportation';
+    rawKeywordsList = [
+      'daylight city', 'sunny skyline', 'blue sky', 'modern skyscrapers', 'harbor water',
+      'city traffic', 'corporate background', 'summer daytime', 'glass architecture', 'downtown',
+      'highway bridge', 'sun glint', 'clean plate', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'water ripples', 'urban landscape', 'commercial video'
+    ];
+  } else if (templateId === 'metropolis_christmas_snow_skyline') {
+    title = 'Christmas Winter City Skyline with Snow Dusted Skyscraper Roofs and Falling Snowflakes';
+    description =
+      'Cozy holiday winter night cityscape featuring realistic snow-covered skyscraper rooftops, gentle falling snowflakes, warm golden glowing office windows, holiday bridge traffic, and winter crescent moon. Seamless looping 4K animation.';
+    primaryCategory = 'Holidays';
+    secondaryCategory = 'Buildings/Landmarks';
+    rawKeywordsList = [
+      'christmas city', 'snowy skyline', 'winter wonderland', 'falling snowflakes', 'holiday skyline',
+      'festive city', 'cozy windows', 'winter night', 'christmas eve', 'snow covered roofs',
+      'golden lights', 'december', 'holiday promo', 'bridge traffic', 'harbor reflection',
+      'copy space', 'motion background', 'seamless loop', '4k animation', 'seasonal celebration'
+    ];
+  } else if (templateId === 'metropolis_new_year_midnight_skyline') {
+    title = 'New Years Eve Midnight City Skyline with Cascading Golden Stardust and Festive Lights';
+    description =
+      'Prestigious New Years Eve midnight cityscape showing illuminated metropolitan towers, cascading golden stardust sparkles, celebratory ambient sparkles in the vast night sky, and golden harbor water reflections. Seamless looping 4K animation.';
+    primaryCategory = 'Holidays';
+    secondaryCategory = 'Buildings/Landmarks';
+    rawKeywordsList = [
+      'new year skyline', 'midnight metropolis', 'golden stardust', 'celebration lights', 'new year eve',
+      'luxury cityscape', 'gala background', 'annual event', 'illuminated skyscrapers', 'harbor reflection',
+      'gold particles', 'corporate celebration', 'december 31', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'broadcast plate', 'festive night', 'midnight climax'
+    ];
+  } else if (templateId === 'metropolis_evening_rush_hour_traffic') {
+    title = 'Evening Rush Hour City Skyline with Streaming Expressway Headlights and Dusk Sunset';
+    description =
+      'Dynamic dusk rush hour cityscape motion background featuring illuminated office skyscrapers against violet-orange sunset sky, with long-exposure white headlights and red taillights streaming across expressway bridge. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Transportation';
+    rawKeywordsList = [
+      'evening rush hour', 'city traffic', 'highway light trails', 'dusk skyline', 'urban commute',
+      'expressway bridge', 'downtown sunset', 'traffic streaks', 'long exposure', 'office windows',
+      'headlights', 'taillights', 'metropolis evening', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'civil engineering', 'commuter traffic', 'city life'
+    ];
+  } else if (templateId === 'metropolis_rainy_evening_skyline') {
+    title = 'Rainy Dusk City Skyline with Atmospheric Raindrops and Wet Asphalt Reflections';
+    description =
+      'Atmospheric rainy evening cityscape featuring delicate falling rain streaks, softly blurred warm skyscraper windows in misty air, glistening wet expressway highway, and calm dark harbor reflections. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Nature';
+    rawKeywordsList = [
+      'rainy city', 'rain drops', 'wet asphalt', 'moody skyline', 'atmospheric evening',
+      'rainy night', 'lofi background', 'misting rain', 'glistening road', 'warm window lights',
+      'calm harbor', 'puddle reflections', 'dusk rain', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'peaceful rain', 'chillout backdrop', 'urban rain'
+    ];
+  } else if (templateId === 'metropolis_golden_hour_corporate') {
+    title = 'Golden Hour Sunset Corporate Skyline with Radiant Sunburst and Water Reflections';
+    description =
+      'Inspiring corporate skyline at golden hour showing dark skyscraper silhouettes backlit by radiant sunset sunburst, golden sun path shimmering on harbor water, and evening commuter traffic. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Business/Finance';
+    rawKeywordsList = [
+      'golden hour sunset', 'corporate skyline', 'sunburst horizon', 'backlit architecture', 'sunlit waves',
+      'financial district', 'business vision', 'sunset glow', 'ambition', 'company kickoff',
+      'harbor reflection', 'downtown towers', 'amber sunlight', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'motivational', 'investor presentation', 'growth'
+    ];
+  } else if (templateId === 'metropolis_winter_twilight_frost') {
+    title = 'Winter Twilight Frosted City Skyline with Cozy Amber Penthouse Window Lights';
+    description =
+      'Serene winter twilight cityscape featuring frosted building cornices under deep cobalt blue night sky with twinkling stars, warm amber illuminated penthouse suites, and calm icy harbor waters. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Holidays';
+    rawKeywordsList = [
+      'winter twilight', 'frosted skyline', 'cozy penthouse', 'cobalt night', 'winter city',
+      'cold evening', 'seasonal promo', 'twilight stars', 'amber windows', 'icy water',
+      'quiet night', 'tranquil city', 'peaceful evening', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'holiday season', 'executive suites', 'winter dusk'
+    ];
+  } else if (templateId === 'metropolis_foggy_dawn_harbor') {
+    title = 'Foggy Morning Dawn Harbor Skyline with Rolling Pastel Mist and Calm Waters';
+    description =
+      'Peaceful early morning dawn cityscape showing pastel lilac and peach skies, soft low-lying mist rolling between skyscraper bases, calm mirror harbor water, and gentle morning light. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Nature';
+    rawKeywordsList = [
+      'foggy morning', 'dawn skyline', 'harbor mist', 'peaceful city', 'pastel sunrise',
+      'early morning', 'calm waters', 'rolling fog', 'soft light', 'serene dawn',
+      'morning commute', 'lilac sky', 'quiet metropolis', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'new day', 'tranquil scenery', 'atmospheric'
+    ];
+  } else if (templateId === 'metropolis_clear_midnight_blue') {
+    title = 'Pure Deep Sapphire Midnight City Skyline with Illuminated Office Windows and Stars';
+    description =
+      'Clean professional midnight blue cityscape plate showing razor-sharp modern skyscraper silhouettes with cyan office window grids, blinking aviation safety lights, and calm rippling harbor waters under deep starry sky. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Backgrounds/Textures';
+    rawKeywordsList = [
+      'midnight blue', 'sapphire skyline', 'clean city plate', 'modern downtown', 'office lights',
+      'professional background', 'night cityscape', 'aviation lights', 'starry night', 'minimalist city',
+      'waterfront harbor', 'commercial plate', 'architectural silhouettes', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'broadcast background', 'corporate video', 'sleek design'
+    ];
+  } else if (templateId === 'metropolis_spring_breeze_cherry') {
+    title = 'Spring Breeze City Skyline with Drifting Pink Blossom Petals and Clear Blue Sky';
+    description =
+      'Uplifting spring daytime cityscape showing modern glass towers under clear blue sky, with delicate pink sakura blossom petals drifting in the refreshing breeze over sparkling bay waters. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Nature';
+    rawKeywordsList = [
+      'spring skyline', 'blossom petals', 'spring breeze', 'sakura city', 'clear blue sky',
+      'fresh atmosphere', 'seasonal background', 'drifting petals', 'pink blossoms', 'sunny day',
+      'sparkling water', 'modern skyscrapers', 'renewal', 'cheerful city', 'copy space',
+      'motion background', 'seamless loop', '4k animation', 'springtime', 'natural beauty'
+    ];
+  } else if (templateId === 'christmas_midnight_santa_city_flyover') {
     title = 'Flying Santa Claus Sleigh with Reindeer Over Glowing Full Moon and City Skyline Silhouette';
     description =
       'Horizontal parallax motion background featuring Santa Claus in a flying sleigh with eight galloping reindeer and Rudolph soaring over an illuminated gothic and modern city skyline under a luminous full moon with clouds and stardust trail. Seamless looping 4K animation.';

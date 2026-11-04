@@ -7,6 +7,9 @@ import * as FireworksPhysics from './fireworksPhysicsEngine';
 import * as NordicFolkEngine from './nordicFolkArtEngine';
 import * as LivingVectorEngine from './livingVectorMotionEngine';
 import * as ChristmasPhysics from './christmasPhysicsEngine';
+import * as MetropolisSkyline from './metropolisSkylineEngine';
+import * as MetropolisVariations from './metropolisVariationsEngine';
+import * as MetropolisExtended from './metropolisExtendedVariationsEngine';
 
 export interface RenderContext {
   ctx: CanvasRenderingContext2D;
@@ -505,6 +508,69 @@ export function drawMotionGraphicFrame({
       ChristmasPhysics.drawBallisticOrnamentCascades(ctx, config, time, progress, width, height);
       break;
 
+    // ==============================================================
+    // 13. Metropolis City Skyline Beacons & Rooftop Searchlights
+    // ==============================================================
+    case 'metropolis_city_skyline_beacon':
+      MetropolisSkyline.drawMetropolisSkylineBeacon(ctx, config, time, progress, width, height);
+      break;
+
+    // ==============================================================
+    // 14. Metropolis Cinematic Market Variations (No Countdown, No Central Laser)
+    // ==============================================================
+    case 'metropolis_eco_smart_city':
+      MetropolisVariations.drawEcoSmartCity(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_fintech_bull_market':
+      MetropolisVariations.drawFinTechBullMarket(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_quiet_luxury_noir':
+      MetropolisVariations.drawQuietLuxuryNoir(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_golden_hour_dawn':
+      MetropolisVariations.drawGoldenHourDawn(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_cyberpunk_synthwave':
+      MetropolisVariations.drawCyberpunkSynthwave(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_cosmic_orbital_harbor':
+      MetropolisVariations.drawCosmicOrbitalHarbor(ctx, config, time, progress, width, height);
+      break;
+
+    // ==============================================================
+    // 15. Realistic Urban City Skyline Variations (Proven Architecture)
+    // ==============================================================
+    case 'metropolis_daylight_sunny_skyline':
+      MetropolisExtended.drawDaylightSunnySkyline(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_christmas_snow_skyline':
+      MetropolisExtended.drawChristmasSnowSkyline(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_new_year_midnight_skyline':
+      MetropolisExtended.drawNewYearMidnightSkyline(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_evening_rush_hour_traffic':
+      MetropolisExtended.drawEveningRushHourTraffic(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_rainy_evening_skyline':
+      MetropolisExtended.drawRainyEveningSkyline(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_golden_hour_corporate':
+      MetropolisExtended.drawGoldenHourCorporate(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_winter_twilight_frost':
+      MetropolisExtended.drawWinterTwilightFrost(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_foggy_dawn_harbor':
+      MetropolisExtended.drawFoggyDawnHarbor(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_clear_midnight_blue':
+      MetropolisExtended.drawClearMidnightBlue(ctx, config, time, progress, width, height);
+      break;
+    case 'metropolis_spring_breeze_cherry':
+      MetropolisExtended.drawSpringBreezeCherry(ctx, config, time, progress, width, height);
+      break;
+
     default:
       drawGoldRoyalGalaCountdown(ctx, config, time, progress, width, height);
       break;
@@ -514,7 +580,10 @@ export function drawMotionGraphicFrame({
   ctx.globalCompositeOperation = 'source-over';
 
   // 3. Draw Typography & Countdown Numbers Overlay
-  const shouldDrawText = config.showText && config.textDisplayMode !== 'clean_no_text';
+  const shouldDrawText =
+    config.showText &&
+    config.textDisplayMode !== 'clean_no_text' &&
+    !config.templateId.startsWith('metropolis_');
   if (shouldDrawText && config.templateId !== 'custom_html_canvas_code') {
     drawCountdownMasterOverlay(ctx, config, time, progress, width, height);
   }
