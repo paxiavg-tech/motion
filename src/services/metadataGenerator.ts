@@ -476,6 +476,126 @@ export function generateMicrostockMetadata(
       'sparkling water', 'modern skyscrapers', 'renewal', 'cheerful city', 'copy space',
       'motion background', 'seamless loop', '4k animation', 'springtime', 'natural beauty'
     ];
+  } else if (templateId === 'silhouette_alpine_winter_pines') {
+    title = 'Winter Alpine Pine Forest Mountain Silhouette with Falling Snow and Distant Santa Sleigh';
+    description =
+      'Serene winter alpine motion background featuring majestic layered mountain peaks, dense evergreen pine tree silhouettes, gentle falling snowflakes, and Santa in a distant flying sleigh across a starry midnight sky. Seamless looping 4K animation.';
+    primaryCategory = 'Nature';
+    secondaryCategory = 'Holidays';
+    rawKeywordsList = [
+      'alpine mountains', 'pine forest', 'winter landscape', 'silhouette', 'falling snow',
+      'snowflakes', 'night sky', 'stars', 'santa sleigh', 'evergreen trees', 'scenic nature',
+      'winter solstice', 'christmas eve', 'peaceful winter', 'copy space', 'motion background',
+      'seamless loop', '4k animation', 'cold winter', 'frozen wilderness', 'christmas background'
+    ];
+  } else if (templateId === 'silhouette_cozy_rural_christmas_village') {
+    title = 'Cozy Rural Countryside Christmas Village Silhouette with Smoking Chimneys and Glowing Windows';
+    description =
+      'Charming rural countryside village silhouette nestled among rolling snow-covered hills with historic stone church, cottages with curling chimney smoke, warm glowing amber windows, and decorated community Christmas tree under starry winter sky. Seamless looping 4K animation.';
+    primaryCategory = 'Holidays';
+    secondaryCategory = 'Buildings/Landmarks';
+    rawKeywordsList = [
+      'christmas village', 'rural countryside', 'cottage silhouette', 'church steeple', 'smoking chimneys',
+      'warm windows', 'rolling hills', 'snowy village', 'decorated tree', 'winter night', 'stars',
+      'peaceful countryside', 'holiday background', 'cozy winter', 'rustic village', 'copy space',
+      'motion background', 'seamless loop', '4k animation', 'christmas eve', 'small town'
+    ];
+  } else if (templateId === 'silhouette_nordic_pine_forest_lake') {
+    title = 'Tranquil Nordic Pine Forest and Mountain Lake Silhouette with Starlight Water Reflections';
+    description =
+      'Calm Scandinavian nature silhouette showing dense pine forest trees along misty lakeshore, majestic mountain range in background, and twinkling stars with mirror starlight reflections on calm rippling lake surface. Seamless looping 4K animation.';
+    primaryCategory = 'Nature';
+    secondaryCategory = 'Backgrounds/Textures';
+    rawKeywordsList = [
+      'nordic forest', 'pine trees', 'mountain lake', 'starlight reflection', 'scandinavian nature',
+      'calm water', 'tranquil lake', 'fir trees', 'mountain silhouette', 'misty shoreline',
+      'starry night', 'peaceful nature', 'wilderness landscape', 'ambient plate', 'copy space',
+      'motion background', 'seamless loop', '4k animation', 'serene scenery', 'mirror lake'
+    ];
+  } else if (templateId === 'silhouette_waterfront_ferris_wheel') {
+    title = 'Illuminated Waterfront Ferris Wheel and Marina Promenade with City Skyline Silhouette';
+    description =
+      'Vibrant evening waterfront promenade showing rotating illuminated Ferris wheel with spokes and passenger cabins, docked sailing yacht masts, gentle ocean harbor waves, and distant metropolitan skyscraper silhouette under starry twilight sky. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Parks/Outdoor';
+    rawKeywordsList = [
+      'ferris wheel', 'waterfront promenade', 'marina', 'sailing yacht', 'boat masts',
+      'city skyline', 'illuminated wheel', 'harbor waves', 'ocean pier', 'amusement park',
+      'evening waterfront', 'boardwalk', 'twilight sky', 'urban coast', 'copy space',
+      'motion background', 'seamless loop', '4k animation', 'night entertainment', 'seaside city'
+    ];
+  } else if (templateId === 'silhouette_mountain_sunset_highway') {
+    title = 'Scenic Mountain Pass Highway Silhouette at Golden Sunset with Flowing Vehicle Headlight Trails';
+    description =
+      'Dramatic mountain pass highway silhouette at golden sunset featuring winding alpine road with continuous streaming vehicle headlight and taillight trails, rugged pine ridge profiles, and radiant warm horizon glow with expansive open sky. Seamless looping 4K animation.';
+    primaryCategory = 'Transportation';
+    secondaryCategory = 'Nature';
+    rawKeywordsList = [
+      'mountain highway', 'scenic drive', 'alpine road', 'sunset skyline', 'light trails',
+      'vehicle headlights', 'taillights', 'mountain pass', 'pine ridges', 'winding road',
+      'golden hour', 'evening commute', 'road trip', 'travel background', 'copy space',
+      'motion background', 'seamless loop', '4k animation', 'freedom journey', 'sunset vista'
+    ];
+  } else if (templateId === 'silhouette_bethlehem_nativity_star') {
+    title = 'Holy Bethlehem Nativity Silhouette with Manger and Radiant Eight-Point Star of Wonder';
+    description =
+      'Spiritual Christmas nativity silhouette plate featuring peaceful Bethlehem village horizon with palms, traditional stable manger shelter with the Holy Family, and the brilliant radiant Eight-Point Bethlehem Star casting warm volumetric rays into starry night sky. Seamless looping 4K animation.';
+    primaryCategory = 'Religion';
+    secondaryCategory = 'Holidays';
+    rawKeywordsList = [
+      'bethlehem star', 'nativity scene', 'holy family', 'manger stable', 'star of wonder',
+      'christmas story', 'palm trees', 'desert village', 'spiritual holiday', 'divine light',
+      'volumetric rays', 'silent night', 'holy night', 'christian heritage', 'faith background',
+      'copy space', 'motion background', 'seamless loop', '4k animation', 'peace on earth'
+    ];
+  } else if (templateId === 'silhouette_autumn_harvest_windmill') {
+    title = 'Rustic Autumn Harvest Farmstead Silhouette with Spinning Windmill and Drifting Golden Leaves';
+    description =
+      'Warm rustic countryside farmstead silhouette featuring rotating four-blade Dutch windmill, traditional red barn with weather vane, grazing paddock fences, and falling golden autumn foliage leaves drifting across amber twilight horizon. Seamless looping 4K animation.';
+    primaryCategory = 'Nature';
+    secondaryCategory = 'Industrial';
+    rawKeywordsList = [
+      'windmill silhouette', 'autumn harvest', 'farmstead', 'countryside barn', 'turning blades',
+      'drifting leaves', 'autumn foliage', 'thanksgiving season', 'rural farm', 'paddock fence',
+      'amber sunset', 'peaceful farm', 'agriculture', 'rustic charm', 'copy space',
+      'motion background', 'seamless loop', '4k animation', 'harvest festival', 'fall season'
+    ];
+  } else if (templateId === 'silhouette_stag_mountain_aurora') {
+    title = 'Majestic Wild Stag Silhouette on Rocky Ridge with Northern Lights Aurora Borealis';
+    description =
+      'Breathtaking Nordic wilderness silhouette showing a noble antlered buck stag standing on a rocky mountain bluff overlooking deep pine valleys, framed by waving green and violet Aurora Borealis curtains and falling stardust. Seamless looping 4K animation.';
+    primaryCategory = 'Animals/Wildlife';
+    secondaryCategory = 'Nature';
+    rawKeywordsList = [
+      'antlered stag', 'wild buck', 'rocky ridge', 'northern lights', 'aurora borealis',
+      'pine valley', 'wildlife silhouette', 'scandinavian wilderness', 'green aurora', 'polar sky',
+      'starry night', 'majestic animal', 'solstice', 'forest king', 'copy space',
+      'motion background', 'seamless loop', '4k animation', 'serene wilderness', 'nordic nature'
+    ];
+  } else if (templateId === 'silhouette_coastal_lighthouse_harbor') {
+    title = 'Coastal Ocean Lighthouse on Rocky Cliff with Sweeping Light Beam and Rolling Waves';
+    description =
+      'Iconic coastal maritime silhouette featuring historic stone lighthouse on rugged rocky sea cliff projecting a rotating volumetric beam of light across rolling ocean swells, harbor buoy with blinking lantern, and distant sailboat. Seamless looping 4K animation.';
+    primaryCategory = 'Buildings/Landmarks';
+    secondaryCategory = 'Transportation';
+    rawKeywordsList = [
+      'lighthouse', 'light beam', 'sea cliff', 'ocean waves', 'rocky coast',
+      'beacon of light', 'maritime safety', 'harbor entrance', 'coastal night', 'sailboat silhouette',
+      'buoy lantern', 'hope guidance', 'rolling swells', 'nautical scenery', 'copy space',
+      'motion background', 'seamless loop', '4k animation', 'ocean shore', 'maritime beacon'
+    ];
+  } else if (templateId === 'silhouette_ski_resort_alpine_village') {
+    title = 'Snowy Alpine Ski Resort Mountain Village with Moving Cableway Gondola and Warm Chalets';
+    description =
+      'Winter wonderland alpine ski resort silhouette featuring moving cable car gondola gliders traversing mountain summits, snow-dusted ski slopes, cozy timber chalets with amber illuminated windows, and gentle falling powder snow under moonlit sky. Seamless looping 4K animation.';
+    primaryCategory = 'Sports/Recreation';
+    secondaryCategory = 'Holidays';
+    rawKeywordsList = [
+      'ski resort', 'cable car', 'gondola lift', 'alpine chalets', 'snowy mountains',
+      'ski slope', 'winter holiday', 'timber cabins', 'powder snow', 'falling snow',
+      'winter sports', 'swiss alps', 'cozy vacation', 'ski village', 'mountain summit',
+      'copy space', 'motion background', 'seamless loop', '4k animation', 'winter tourism'
+    ];
   } else if (templateId === 'christmas_midnight_santa_city_flyover') {
     title = 'Flying Santa Claus Sleigh with Reindeer Over Glowing Full Moon and City Skyline Silhouette';
     description =

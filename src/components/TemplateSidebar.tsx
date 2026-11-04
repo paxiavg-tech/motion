@@ -63,7 +63,8 @@ export const TemplateSidebar: React.FC<TemplateSidebarProps> = ({
           p.category === 'Sport, Fitness & Esports' ||
           p.category === 'Commercial Sale & Promo' ||
           p.category === '2D Mascot & Animated Characters' ||
-          p.id.startsWith('metropolis_')
+          p.id.startsWith('metropolis_') ||
+          p.id.startsWith('silhouette_')
       ).length,
     []
   );
@@ -84,7 +85,8 @@ export const TemplateSidebar: React.FC<TemplateSidebarProps> = ({
         p.category === 'Sport, Fitness & Esports' ||
         p.category === 'Commercial Sale & Promo' ||
         p.category === '2D Mascot & Animated Characters' ||
-        p.id.startsWith('metropolis_');
+        p.id.startsWith('metropolis_') ||
+        p.id.startsWith('silhouette_');
 
       if (themeFilter === 'evergreen' && !isEvergreen) return false;
       if (themeFilter === 'countdown' && isEvergreen) return false;

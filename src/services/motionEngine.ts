@@ -10,6 +10,7 @@ import * as ChristmasPhysics from './christmasPhysicsEngine';
 import * as MetropolisSkyline from './metropolisSkylineEngine';
 import * as MetropolisVariations from './metropolisVariationsEngine';
 import * as MetropolisExtended from './metropolisExtendedVariationsEngine';
+import * as SilhouetteLandscapes from './silhouetteLandscapesEngine';
 
 export interface RenderContext {
   ctx: CanvasRenderingContext2D;
@@ -571,6 +572,40 @@ export function drawMotionGraphicFrame({
       MetropolisExtended.drawSpringBreezeCherry(ctx, config, time, progress, width, height);
       break;
 
+    // ==============================================================
+    // 16. Silhouette Landscapes (Mountains, Villages, Coast & Christmas)
+    // ==============================================================
+    case 'silhouette_alpine_winter_pines':
+      SilhouetteLandscapes.drawAlpineWinterPines(ctx, config, time, progress, width, height);
+      break;
+    case 'silhouette_cozy_rural_christmas_village':
+      SilhouetteLandscapes.drawCozyRuralVillage(ctx, config, time, progress, width, height);
+      break;
+    case 'silhouette_nordic_pine_forest_lake':
+      SilhouetteLandscapes.drawNordicForestLake(ctx, config, time, progress, width, height);
+      break;
+    case 'silhouette_waterfront_ferris_wheel':
+      SilhouetteLandscapes.drawFerrisWheelSkyline(ctx, config, time, progress, width, height);
+      break;
+    case 'silhouette_mountain_sunset_highway':
+      SilhouetteLandscapes.drawMountainSunsetHighway(ctx, config, time, progress, width, height);
+      break;
+    case 'silhouette_bethlehem_nativity_star':
+      SilhouetteLandscapes.drawBethlehemNativityStar(ctx, config, time, progress, width, height);
+      break;
+    case 'silhouette_autumn_harvest_windmill':
+      SilhouetteLandscapes.drawAutumnHarvestWindmill(ctx, config, time, progress, width, height);
+      break;
+    case 'silhouette_stag_mountain_aurora':
+      SilhouetteLandscapes.drawStagMountainAurora(ctx, config, time, progress, width, height);
+      break;
+    case 'silhouette_coastal_lighthouse_harbor':
+      SilhouetteLandscapes.drawCoastalLighthouseHarbor(ctx, config, time, progress, width, height);
+      break;
+    case 'silhouette_ski_resort_alpine_village':
+      SilhouetteLandscapes.drawSkiResortAlpineVillage(ctx, config, time, progress, width, height);
+      break;
+
     default:
       drawGoldRoyalGalaCountdown(ctx, config, time, progress, width, height);
       break;
@@ -583,7 +618,8 @@ export function drawMotionGraphicFrame({
   const shouldDrawText =
     config.showText &&
     config.textDisplayMode !== 'clean_no_text' &&
-    !config.templateId.startsWith('metropolis_');
+    !config.templateId.startsWith('metropolis_') &&
+    !config.templateId.startsWith('silhouette_');
   if (shouldDrawText && config.templateId !== 'custom_html_canvas_code') {
     drawCountdownMasterOverlay(ctx, config, time, progress, width, height);
   }
