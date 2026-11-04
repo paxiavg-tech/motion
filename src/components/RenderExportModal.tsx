@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Download,
   X,
@@ -18,6 +18,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { RenderProgress, MotionConfig, RESOLUTION_PRESETS, ExportFormat } from '../types/motion';
+import { MOTION_PRESETS } from '../templates/motionPresets';
 import {
   downloadJsonFile,
   downloadTxtFile,
@@ -34,6 +35,7 @@ interface RenderExportModalProps {
   onCancel: () => void;
   config: MotionConfig;
   exportFormat: ExportFormat;
+  loadedTextures?: Record<string, HTMLImageElement>;
 }
 
 export const RenderExportModal: React.FC<RenderExportModalProps> = ({
@@ -43,6 +45,7 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
   onCancel,
   config,
   exportFormat,
+  loadedTextures,
 }) => {
   const [activeTab, setActiveTab] = useState<'video' | 'metadata'>('video');
   const [copiedField, setCopiedField] = useState<string | null>(null);
@@ -50,9 +53,27 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
   const [gifProgress, setGifProgress] = useState<number>(0);
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifFileName, setGifFileName] = useState<string | null>(null);
+  const [cachedTemplateId, setCachedTemplateId] = useState<string | null>(null);
+
+  // CRITICAL FIX: Always reset cached GIF whenever a new render begins, or when switching templates / export files
+  useEffect(() => {
+    if (progress.isRendering || (cachedTemplateId && cachedTemplateId !== config.templateId)) {
+      if (gifUrl) {
+        try {
+          URL.revokeObjectURL(gifUrl);
+        } catch {}
+      }
+      setGifUrl(null);
+      setGifFileName(null);
+      setIsGeneratingGif(false);
+      setGifProgress(0);
+      setCachedTemplateId(null);
+    }
+  }, [progress.isRendering, config.templateId, progress.downloadFileName]);
 
   if (!isOpen) return null;
 
+  const currentPreset = MOTION_PRESETS.find((p) => p.id === config.templateId);
   const resConfig = RESOLUTION_PRESETS[config.resolution];
   const isComplete = !progress.isRendering && Boolean(progress.downloadUrl);
   const isFailed = Boolean(progress.error);
@@ -115,7 +136,8 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
   };
 
   const handleDownloadPinterestGif = async () => {
-    if (gifUrl && gifFileName) {
+    // Only reuse cached GIF if it was generated for the exact same template!
+    if (gifUrl && gifFileName && cachedTemplateId === config.templateId) {
       const a = document.createElement('a');
       a.href = gifUrl;
       a.download = gifFileName;
@@ -131,6 +153,7 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
     try {
       const result = await renderPinterestGif({
         config,
+        loadedTextures,
         onProgress: (p) => {
           setGifProgress(p.percentage);
         },
@@ -139,6 +162,7 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
       const url = URL.createObjectURL(result.blob);
       setGifUrl(url);
       setGifFileName(result.fileName);
+      setCachedTemplateId(config.templateId);
 
       const a = document.createElement('a');
       a.href = url;
@@ -627,7 +651,7 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
                         </span>
                       </div>
                       <p className="text-[10px] text-neutral-400 truncate mt-0.5">
-                        Format GIF ringan & jernih (15 FPS, &lt;15MB), siap langsung di-pin ke feed Pinterest.
+                        Animasi GIF untuk "{currentPreset?.name || config.templateId}" (15 FPS, &lt;15MB), siap langsung di-pin ke Pinterest.
                       </p>
                     </div>
                   </div>
@@ -642,7 +666,7 @@ export const RenderExportModal: React.FC<RenderExportModalProps> = ({
                         <RefreshCw className="w-3.5 h-3.5 animate-spin" />
                         <span>Encoding GIF ({gifProgress}%)...</span>
                       </>
-                    ) : gifUrl ? (
+                    ) : gifUrl && cachedTemplateId === config.templateId ? (
                       <>
                         <Download className="w-3.5 h-3.5" />
                         <span>Unduh Lagi (.gif)</span>

@@ -347,6 +347,7 @@ export default function App() {
         onCancel={handleCancelRender}
         config={config}
         exportFormat={exportFormat}
+        loadedTextures={loadedTexturesRef.current}
       />
 
       {/* Technical Specs & Anti-Stutter Blueprint Modal */}
